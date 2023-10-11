@@ -1,5 +1,4 @@
 import org.junit.jupiter.api.Test;
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class BankAccountTest{
@@ -88,16 +87,52 @@ public class BankAccountTest{
         assertThat(accountNumber).isEqualTo(0000);
     }
 
+    @Test
+    void canGetBalance(){
+        //Given
+        BankAccount bank3 = new BankAccount("John", "Doe", "2022-10", 8888);
+        //When
+        int balance = bank3.getBalance();
+        //Then
+        int expected = 0;
+        assertThat(balance).isEqualTo(expected);
+    }
+
+    @Test
+    void canSetBalance(){
+        //Given
+        BankAccount bank3 = new BankAccount("John", "Doe", "2022-10", 8888);
+        //When
+        bank3.setBalance(100);
+        int balance = bank3.getBalance();
+        //Then
+        assertThat(balance).isEqualTo(100);
+    }
+
+    @Test
+    void plusBalance(){
+        //Given
+        BankAccount bank4 = new BankAccount("John", "Doe", "2022-10", 8888);
+        //When
+        int plusbalance = bank4.depositMoney(50);
+        //Then
+        assertThat(plusbalance).isEqualTo(50);
+    }
+
+    @Test
+    void minusBalance(){
+        //Given
+        BankAccount bank4 = new BankAccount("John", "Doe", "2022-10", 8888);
+        //When
+        int balance = bank4.getBalance();
+        bank4.depositMoney(100);
+        // next When
+        int minusBalance = bank4.withdrawMoney(60);
+        int updatedBalance = bank4.getBalance();
+        //Then
+        assertThat(updatedBalance).isEqualTo(40);
+    }
 
 
-
-
-
-
-
-
-
-
-
-
+    
 }// last curly bracket
